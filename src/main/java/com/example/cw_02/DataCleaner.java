@@ -6,7 +6,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
 public class DataCleaner {
-    public static void main(String[] args) {
+
+    public static void inventory() {
         String Input = "inventory_legacy.txt";
         String Output = "inventory_cleaned.txt";
         int threshold = 10;
@@ -71,4 +72,43 @@ public class DataCleaner {
 
 
     }
+
+    public static void dealers() {
+        String input = "dealers_legacy.txt";
+        String output = "dealers_cleaned.txt";
+
+        try (BufferedReader Bread = new BufferedReader(new FileReader(input));
+             BufferedWriter Bwrite = new BufferedWriter(new FileWriter(output))) {
+
+            String line;
+            while ((line = Bread.readLine()) != null) {
+                if (line.trim().isEmpty()) {
+                    continue;
+                }
+
+                String normalizedLine = line.replace(",", "|").replace(";", "|");
+                String[] data = normalizedLine.split("\\|");
+
+
+                for (int i = 0; i < data.length; i++) {
+                    data[i] = data[i].trim();
+
+                    if (data[i].isEmpty()) {
+                        data[i] = "Unknown";
+                    }
+                }
+
+                String newRecord = String.join("|", data);
+
+                Bwrite.write(newRecord);
+                Bwrite.newLine();
+            }
+
+            System.out.println("Data Cleaning complete! new dealers text file is saved as: " + output);
+
+        } catch (IOException e) {
+            System.out.println("ERROR!! Could not process file " + e.getMessage());
+        }
+    }
+
 }
