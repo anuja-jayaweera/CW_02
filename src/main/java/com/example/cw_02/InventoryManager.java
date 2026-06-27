@@ -64,5 +64,46 @@ public class InventoryManager {
             System.err.println("ERROR!! Can't write to file" + e.getMessage());
         }
     }
+    public static void deleteItems() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter the code of the item that you want to delete: ");
+        String targetCode = scanner.nextLine().trim();
 
+        File original = new File(path);
+        File temp = new File("temp.txt");
+
+        boolean exists = false;
+        try (BufferedReader Bread = new BufferedReader(new FileReader(original));
+             BufferedWriter Bwrite = new BufferedWriter(new FileWriter(temp))){
+            String line;
+            while ((line = Bread.readLine())!= null){
+                String data [] = line.split("\\|");
+
+                if(data.length>0&&data[0].trim().equals(targetCode)){
+                    exists = true;
+                    continue;
+                }
+
+                Bwrite.write(line);
+                Bwrite.newLine();
+            }
+        } catch (IOException e){
+            System.out.println("ERROR! Can't process file" +e.getMessage());
+            return;
+        }
+        if (exists){
+            if(original.delete()){
+                if(temp.renameTo(original)){
+                    System.out.println("Successfully deleted item "+targetCode);
+                }else {
+                    System.out.println("ERROR! Could not update file system");
+                }
+            }else {
+                System.out.println("ERROR! Deletion failed");
+            }
+        }else {
+            System.out.println("ERROR! Item code does not exists");
+            temp.delete();
+        }
+    }
 }
