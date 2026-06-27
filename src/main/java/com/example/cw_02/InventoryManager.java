@@ -106,4 +106,75 @@ public class InventoryManager {
             temp.delete();
         }
     }
+
+    public static void update(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter the code of the item you want to update: ");
+        String target = scanner.nextLine().trim();
+
+        File original = new File(path);
+        File temp = new File("temp.txt");
+        boolean exists = false;
+
+        try(BufferedReader Bread = new BufferedReader(new FileReader(original));
+            BufferedWriter Bwrite = new BufferedWriter(new FileWriter(temp))){
+
+            String line;
+            while ((line = Bread.readLine()) != null){
+                String[] data = line.split("\\|");
+
+                if(data.length>0&&data[0].equals(target)){
+                    exists = true;
+                    System.out.println("Item Found! Enter the new item details");
+
+                    System.out.println("Enter new item Name: ");
+                    String name = scanner.nextLine().trim();
+
+                    System.out.println("Enter new item Brand: ");
+                    String brand = scanner.nextLine().trim();
+
+                    System.out.println("Enter new item Price: ");
+                    String price = scanner.nextLine().trim();
+
+                    System.out.println("Enter new item Quantity: ");
+                    String quantity = scanner.nextLine().trim();
+
+                    System.out.println("Enter new item Category: ");
+                    String category = scanner.nextLine().trim();
+
+                    System.out.println("Enter new Date(YYYY-MM-DD): ");
+                    String date = scanner.nextLine().trim();
+
+                    System.out.println("Enter new image file name: ");
+                    String image = scanner.nextLine().trim();
+
+                    System.out.println("Enter new Threshold: ");
+                    String threshold = scanner.nextLine().trim();
+
+                    line = target + "|" + name + "|" + brand + "|" + price + "|" + quantity + "|" + category + "|" + date + "|" + image + "|" + threshold;
+                }
+
+                Bwrite.write(line);
+                Bwrite.newLine();
+            }
+        }catch (IOException e ){
+            System.out.println("ERROR! Can't process file " + e.getMessage());
+            return;
+        }
+        if (exists){
+            if(original.delete()){
+                if(temp.renameTo(original)){
+                    System.out.println("Successfully updated item "+target);
+                }else {
+                    System.out.println("ERROR! Could not update file system");
+                }
+            }else {
+                System.out.println("ERROR! update failed");
+            }
+        }else {
+            System.out.println("ERROR! Item code does not exists");
+            temp.delete();
+        }
+    }
+
 }
