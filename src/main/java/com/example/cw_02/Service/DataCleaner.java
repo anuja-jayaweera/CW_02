@@ -29,7 +29,7 @@ public class DataCleaner {
                 String rdate = data.length > 6 ? data[6].trim() : "";
                 String image = data.length > 7 && !data[7].trim().isEmpty() ? data[7].trim() : "No Image";
 
-                String cprice = rPrice.replace("Rs.", "").replace("Rs", "").trim();
+                String cprice = rPrice.replace("Rs.", "").replace("Rs", "").replace(",", "").trim();
                 double price = cprice.isEmpty() ? 0.00 : Double.parseDouble(cprice);
 
                 int quantity = Qty.isEmpty() ? 0 : Integer.parseInt(Qty);
@@ -47,7 +47,7 @@ public class DataCleaner {
                         DateTimeFormatter.ofPattern("dd-MM-yyyy", Locale.ENGLISH),
                 };
 
-                String newDate = "2026-01-01";
+                String newDate = "No Date";
                 if (!rdate.isEmpty()) {
                     for (DateTimeFormatter formatter : formatters) {
                         try {

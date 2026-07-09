@@ -5,7 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class LowStock {
-    public static void main(String[] args){
+    public static void lsm(){
         String input = "inventory_cleaned.txt";
 
         try(BufferedReader Bread = new BufferedReader(new FileReader(input))) {
