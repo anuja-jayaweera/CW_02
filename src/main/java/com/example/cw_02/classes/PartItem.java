@@ -1,4 +1,4 @@
-package com.example.cw_02.Service;
+package com.example.cw_02.classes;
 
 public class PartItem {
     private String partCode;
