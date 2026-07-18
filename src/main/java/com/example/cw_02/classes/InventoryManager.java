@@ -1,4 +1,4 @@
-package com.example.cw_02.Service;
+package com.example.cw_02.classes;
 
 import java.io.*;
 
@@ -33,14 +33,15 @@ public class InventoryManager {
         try (BufferedWriter Bwrite = new BufferedWriter(new FileWriter(path, true))) {
             Bwrite.write(record);
             Bwrite.newLine();
+
+            //Log action
+            AuditLogger.logAction("Add part", code, name);
+
             return "Successfully added item: " + name;
         } catch (IOException e) {
             return "ERROR! Can't write to file: " + e.getMessage();
         }
-
-
     }
-
 
     public static String deleteItems(String targetCode) {
         File original = new File(path);
@@ -60,6 +61,9 @@ public class InventoryManager {
 
                 Bwrite.write(line);
                 Bwrite.newLine();
+
+                //Log action
+                AuditLogger.logAction("delete part", targetCode, "N/A");
             }
         } catch (IOException e) {
             return "ERROR! Can't Process file: " + e.getMessage();
