@@ -48,6 +48,9 @@ public class POSCart {
             itemizedBreakdown += names[i] + "X" + qty + "|Subtotal Rs: " + String.format("%2f", subTotal) + "(" + discountAppliedText + ")\n";
 
             totalAfterDiscount += subTotal;
+
+            //Log action
+            AuditLogger.logAction("Checkout", ids[i], String.valueOf(qty));
         }
         //business rule 2 (10% discount if Engine and Electrical category is included)
             double finalTotal = totalAfterDiscount;
