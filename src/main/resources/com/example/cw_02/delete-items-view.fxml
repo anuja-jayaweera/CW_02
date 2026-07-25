@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cw_02.Controllers.InventoryController">
+   <children>
+      <Label layoutX="214.0" layoutY="28.0" text="Delete Item from Inventory" />
+      <Label layoutX="38.0" layoutY="152.0" text="Enter the Code of the item to delete " />
+      <TextField fx:id="targetCodeField" layoutX="299.0" layoutY="148.0" />
+      <Button layoutX="260.0" layoutY="317.0" mnemonicParsing="false" onAction="#handleDeleteItems" text="Delete Item" />
+   </children>
+</AnchorPane>

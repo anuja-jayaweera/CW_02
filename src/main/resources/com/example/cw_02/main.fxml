@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="520.0" prefWidth="731.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cw_02.Controllers.MainController">
+   <children>
+      <Label layoutX="120.0" layoutY="30.0" prefHeight="26.0" prefWidth="492.0" text="Welcome to Malabe Tuk Tuk spare Inventory System" textAlignment="RIGHT">
+         <font>
+            <Font name="Comic Sans MS Bold Italic" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="291.0" layoutY="89.0" prefHeight="18.0" prefWidth="118.0" text="Select Your Choice">
+         <font>
+            <Font name="Candara Bold" size="14.0" />
+         </font>
+      </Label>
+      <VBox layoutX="222.0" layoutY="136.0" prefHeight="247.0" prefWidth="255.0" spacing="10.0">
+         <children>
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#openDataCleaner" text="Clean Legacy Data files " />
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#openAddItem" prefHeight="26.0" prefWidth="163.0" text="Add An Item To the Inventory" />
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#openDeleteItem" prefHeight="26.0" prefWidth="162.0" text="Delete An Item From the Inventory" />
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#openUpdateItem" text="Upadte Item Details" />
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="check items on low stock " />
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Add Items to cart " />
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Search for an item in the inventory " />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
