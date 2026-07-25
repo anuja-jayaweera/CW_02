@@ -40,10 +40,15 @@ public class InventoryController {
     private TextField thresholdField;
 
     @FXML
+    private TextField targetCodeField;
+
+    @FXML
     public void initialize() {
-        categoryComboBox.getItems().addAll("Engine", "Breaks", "Bodywork", "Electrical", "General");
-        categoryComboBox.setValue("General");
-    } // Fixed: Added the missing closing bracket for the initialize method!
+        if(categoryComboBox != null) {
+            categoryComboBox.getItems().addAll("Engine", "Breaks", "Bodywork", "Electrical", "General");
+            categoryComboBox.setValue("General");
+        }
+    }
 
     // this method runs when the button is clicked
     @FXML
@@ -62,7 +67,7 @@ public class InventoryController {
             date = datePicker.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         }
 
-        // input validations
+
         if (code.isEmpty() || name.isEmpty() || priceRaw.isEmpty() || qtyraw.isEmpty()) {
             showAlert(Alert.AlertType.WARNING, "Validation Error", "Code, Name, Price, Quantity cannot be empty");
             return;
@@ -94,7 +99,66 @@ public class InventoryController {
         }
     }
 
-    // helper method 1
+    @FXML
+    public void handleDeleteItems(ActionEvent event){
+        String targetCode = targetCodeField.getText()!= null? targetCodeField.getText().trim() : "";
+
+        if(targetCode.isEmpty()){
+            showAlert(Alert.AlertType.WARNING, "Validation Error","Please enter the item code and try again");
+            return;
+        }
+
+        String result = InventoryManager.deleteItems(targetCode);
+
+        if(result.toUpperCase().startsWith("ERROR")){
+            showAlert(Alert.AlertType.ERROR,"Delete Failed",result);
+        }else{
+            showAlert(Alert.AlertType.INFORMATION,"Success",result);
+            targetCodeField.clear();
+        }
+    }
+    @FXML
+    void handleUpdateItems(ActionEvent event) {
+        // 1. Get the target code
+        String targetCode = targetCodeField != null && targetCodeField.getText() != null ? targetCodeField.getText().trim() : "";
+
+        if (targetCode.isEmpty()) {
+            showAlert(Alert.AlertType.WARNING, "Validation Error", "Please enter the Target Item Code.");
+            return;
+        }
+
+
+        String name = nameField.getText() != null ? nameField.getText().trim() : "";
+        String brand = brandField.getText() != null ? brandField.getText().trim() : "Unknown";
+        String priceRaw = priceField.getText() != null ? priceField.getText().trim() : "";
+        String qtyraw = quantityField.getText() != null ? quantityField.getText().trim() : "";
+        String category = categoryComboBox.getValue() != null ? categoryComboBox.getValue() : "General";
+        String thresholdraw = thresholdField.getText() != null ? thresholdField.getText().trim() : "10";
+        String image = imageField.getText() != null && !imageField.getText().isEmpty() ? imageField.getText().trim() : "No Image";
+
+        String date = "No Date";
+        if (datePicker.getValue() != null) {
+            date = datePicker.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        }
+
+
+        if (name.isEmpty() || priceRaw.isEmpty() || qtyraw.isEmpty()) {
+            showAlert(Alert.AlertType.WARNING, "Validation Error", "Name, Price, and Quantity cannot be empty.");
+            return;
+        }
+
+
+        String result = InventoryManager.update(targetCode, name, brand, priceRaw, qtyraw, category, date, image, thresholdraw);
+
+
+        if (result.toUpperCase().startsWith("ERROR")) {
+            showAlert(Alert.AlertType.ERROR, "Update Failed", result);
+        } else {
+            showAlert(Alert.AlertType.INFORMATION, "Success", result);
+            clearForm();
+        }
+    }
+
     private void showAlert(Alert.AlertType alertType, String title, String message) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
@@ -103,7 +167,7 @@ public class InventoryController {
         alert.showAndWait();
     }
 
-    // helper method 2
+
     private void clearForm() {
         codeField.clear();
         nameField.clear();
@@ -115,4 +179,6 @@ public class InventoryController {
         if (imageField != null) imageField.clear();
         thresholdField.clear();
     }
+
+
 }
