@@ -18,7 +18,7 @@
             <Font name="Candara Bold" size="14.0" />
          </font>
       </Label>
-      <VBox layoutX="222.0" layoutY="136.0" prefHeight="247.0" prefWidth="255.0" spacing="10.0">
+      <VBox layoutX="222.0" layoutY="136.0" prefHeight="319.0" prefWidth="255.0" spacing="10.0">
          <children>
             <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#openDataCleaner" text="Clean Legacy Data files " />
             <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#openAddItem" prefHeight="26.0" prefWidth="163.0" text="Add An Item To the Inventory" />
@@ -26,7 +26,9 @@
             <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#openUpdateItem" text="Upadte Item Details" />
             <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="check items on low stock " />
             <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Add Items to cart " />
-            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Search for an item in the inventory " />
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#openSearchWindow" prefHeight="15.0" prefWidth="255.0" text="Search for an item in the inventory " />
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#openViewInventory" text="View Inventory" />
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#openDealerSelection" text="Select Random Dealers " />
          </children>
       </VBox>
    </children>
