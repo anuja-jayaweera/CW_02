@@ -41,7 +41,10 @@ public class MainController {
 
     @FXML
     public void openDataCleaner(ActionEvent event){
-        openWindow("data-cleaner-view.fxml","Clean Legacy text files");
-    }
+        openWindow("data-cleaner-view.fxml","Clean Legacy text files");}
+
+    @FXML
+    public void openSearchWindow(ActionEvent event){
+        openWindow("search-view.fxml","Multi Criteria Search");}
 
 }
