@@ -55,4 +55,8 @@ public class MainController {
     public void openDealerSelection(ActionEvent event){
         openWindow("random-dealers-view.fxml","Random Dealer Selection");}
 
+    @FXML
+    public void openLowStock(ActionEvent event){
+        openWindow("low-stock-view.fxml","Low Stock Monitoring");}
+
 }
