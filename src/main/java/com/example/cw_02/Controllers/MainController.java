@@ -47,4 +47,12 @@ public class MainController {
     public void openSearchWindow(ActionEvent event){
         openWindow("search-view.fxml","Multi Criteria Search");}
 
+    @FXML
+    public void openViewInventory(ActionEvent event){
+        openWindow("Inventory-table-view.fxml","Inventory");}
+
+    @FXML
+    public void openDealerSelection(ActionEvent event){
+        openWindow("random-dealers-view.fxml","Random Dealer Selection");}
+
 }
