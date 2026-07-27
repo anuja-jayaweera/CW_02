@@ -59,4 +59,8 @@ public class MainController {
     public void openLowStock(ActionEvent event){
         openWindow("low-stock-view.fxml","Low Stock Monitoring");}
 
+    @FXML
+    public void openCart(ActionEvent event){
+        openWindow("pos-cart-view.fxml","Point Of Sales Cart");}
+
 }
