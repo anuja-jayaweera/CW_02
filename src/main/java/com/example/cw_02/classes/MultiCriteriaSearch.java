@@ -8,7 +8,7 @@ import java.io.IOException;
 public class MultiCriteriaSearch {
 
     public static String performSearch(String searchCategory, double minPrice, double maxPrice, String keyword){
-        String path = "Inventory_cleaned.txt";
+        String path = "inventory_cleaned.txt";
         String results = "";
         try(BufferedReader Bread = new BufferedReader(new FileReader(path))){
             String line;
