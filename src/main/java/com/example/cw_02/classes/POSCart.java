@@ -18,17 +18,17 @@ public class POSCart {
             double price = prices[i];
             String category = categories[i];
 
-            //prevent zero or negative quantities
+
             if (qty <= 0) {
                 return "ERROR! Invalid quantity, quantity should be grater than 0";
             }
 
-            //prevent selling more items than in stock
+
             if (qty > stock) {
                 return "ERROR! stock insufficient";
             }
 
-            //checks if specific categories exists in cart
+
             if (category.equalsIgnoreCase("Engine")) {
                 hasEngine = true;
             }
@@ -36,11 +36,11 @@ public class POSCart {
                 hasElectrical = true;
             }
 
-            //calculate the standard subtotal
+
             double subTotal = price * qty;
             String discountAppliedText = "None";
 
-            //business rule 1(5% discount if the item quantity is greater than 3)
+
             if (qty >= 3) {
                 subTotal = subTotal * 0.95;
                 discountAppliedText = "5% bulk discount";
@@ -49,10 +49,10 @@ public class POSCart {
 
             totalAfterDiscount += subTotal;
 
-            //Log action
+
             AuditLogger.logAction("Checkout", ids[i], String.valueOf(qty));
         }
-        //business rule 2 (10% discount if Engine and Electrical category is included)
+
             double finalTotal = totalAfterDiscount;
             String synergyText = "No";
 
