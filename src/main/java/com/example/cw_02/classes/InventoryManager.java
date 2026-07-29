@@ -81,7 +81,7 @@ public class InventoryManager {
         }
     }
 
-    public static String update(String targetCode., String name, String brand, String price,
+    public static String update(String targetCode, String name, String brand, String price,
                                 String quantity, String category, String date, String image, String threshold) {
         File original = new File(path);
         File tempFile = new File("temp.txt");

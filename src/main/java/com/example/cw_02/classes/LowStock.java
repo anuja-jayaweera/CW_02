@@ -1,4 +1,4 @@
-package com.example.cw_02.Service;
+package com.example.cw_02.classes;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
